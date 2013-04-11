@@ -3,7 +3,7 @@ class TodoListsController < ApplicationController
   # GET /todo_lists.json
   def index
     @todo_lists = TodoList.all
-    @done_things = DoneThing.all
+    @done_things = DoneThing.order('created_at DESC').all
 
     respond_to do |format|
       format.html # index.html.erb

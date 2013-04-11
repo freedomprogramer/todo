@@ -27,10 +27,13 @@ $(function(){
         type: 'delete',
         url: '/todo_lists/' + $done_todo.attr('id'),
         success: function(data){
-          $done_todo.attr('class', 'done-item')
+          $done_todo.clone()
+              .attr('class', 'done-item')
               .attr('id', data.id)
               .find('input').remove().end()
-              .appendTo('#done-things');
+              .prependTo('#done-things').css('display', 'none');
+          $('.done-item:first').fadeIn(1000).slideDown(500);
+          $done_todo.fadeOut(500).remove();
         }
       })
     }
