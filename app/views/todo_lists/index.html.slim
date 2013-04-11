@@ -1,0 +1,17 @@
+div#todo
+  div#todo-menu
+    h3 待办
+    input type='text' name='todo' placeholder='enter your todo' autofocus='autofocus'
+    ul#todo-list
+      -@todo_lists.each do |todo_list|
+        li class='todo-item' id='#{todo_list.id}'
+          input class='unchecked' type='checkbox' title='done thing'
+          span.item-name= todo_list.todo_name
+
+div#done
+  div#done-menu
+    h3 已办
+    ul#done-things
+      -@done_things.each do |done_thing|
+        li class='done-item' id='#{done_thing.id}'
+          span.item-name= done_thing.done_name

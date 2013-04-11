@@ -1,0 +1,75 @@
+body{
+    background-image: url(pomotodo.jpg);
+}
+
+input[type=text]{
+    width: 80%;
+    height: 28px;
+    border: 1px solid #eaeaea;
+}
+
+#todo{
+    position: relative;
+    min-width: 49%;
+    margin: -10px 0 0 -10px;
+    min-height: 31em;
+    display: inline-block;
+    border-right: 1px solid #aaaaaa;
+    border-bottom: 1px solid #aaaaaa;
+    border-radius: 0px 0 10px 0;
+    box-shadow: 2px 2px 10px #777777 inset;
+}
+
+#todo-menu{
+  width: 50%;
+  margin: auto;
+}
+
+#done{
+    float: right;
+    min-width: 49%;
+    margin: -10px -10px 0 0;
+    min-height: 31em;
+    border-left: 1px solid #aaaaaa;
+    border-bottom: 1px solid #aaaaaa;
+    border-radius: 0 0 0 10px;
+    box-shadow: 0px 0px 10px #777777 inset;
+}
+
+#done-menu{
+    width: 50%;
+    margin: auto;
+}
+
+ul{
+    list-style-type: none;
+    margin: 10px 0px;
+    padding: 10px 0;
+}
+
+ul li{
+    border: 1px solid #bbbbbb;
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #F7EDB8;
+    border-radius: 2px;
+    line-height: 35px;
+}
+
+ul#todo-list li:hover{
+    background-color: #F7EDB8;
+}
+
+ul#todo-list input[type=checkbox]{
+    margin-left: 10px;
+    margin-right: 8px;
+}
+
+span.item-name{
+    font-size: 15px;
+    color: #666666;
+}
+
+.done-item span.item-name{
+   margin-left: 15px;
+}
