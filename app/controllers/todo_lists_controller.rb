@@ -1,6 +1,6 @@
 class TodoListsController < ApplicationController
-  # GET /todo_lists
-  # GET /todo_lists.json
+  before_filter :authenticate_user!
+
   def index
     @todo_lists = TodoList.all
     @done_things = DoneThing.order('created_at DESC').all

@@ -38,4 +38,9 @@ $(function(){
       })
     }
   })
+
+  // 单击用户名显示用户操作
+  $('#user-login a').click(function(){
+    $('#user-operation').slideToggle(500);
+  })
 })

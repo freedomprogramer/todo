@@ -1,0 +1,48 @@
+div#register-user{
+    width: 450px;
+    margin: 100px auto;
+    background: white;
+    padding: 70px 0px 70px 100px;
+    box-shadow: 0 0 40px #111111;
+
+    div{
+        margin-bottom: 15px;
+    }
+
+    form{
+        label{
+            display: inline-block;
+            width: 60px;
+            font-size: 16px;
+        }
+
+        input{
+            height: 25px;
+            border: 1px solid #aaaaaa;
+            border-radius: 5px;
+        }
+    }
+}
+
+div#sign-user{
+    @extend div#register-user;
+
+    form{
+        input[type=checkbox]{
+            height: auto;
+        }
+
+        input[type=checkbox] + label{
+            font-size: 13px;
+            width: 50px;
+        }
+    }
+}
+
+
+
+
+
+
+
+

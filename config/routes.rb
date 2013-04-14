@@ -1,4 +1,6 @@
 Todo::Application.routes.draw do
+  devise_for :users
+
   resources :todo_lists, :only => [:index, :create, :destroy]
 
   root :to => 'todo_lists#index'

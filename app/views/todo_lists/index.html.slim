@@ -1,3 +1,15 @@
+div#header
+  div#container
+    h1 Todo List
+    div#history-record
+      a href='#'  历史记录
+    div#user-login
+      a href='#'= current_user.username
+      div#user-operation
+        ul
+          li
+            =link_to '退出登录', destroy_user_session_path, :method => 'delete'
+
 div#todo
   div#todo-menu
     h3 待办
