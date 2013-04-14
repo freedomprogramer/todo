@@ -116,8 +116,8 @@ div#header{
 
             #user-operation{
                 position: absolute;
-                width: 250px;
-                right: 50px;
+                width: 150px;
+                right: 140px;
                 top: 30px;
                 display: none;
 
@@ -127,7 +127,7 @@ div#header{
                     border-bottom-color: #eeeeee;
                     z-index: 1000;
                     position: absolute;
-                    right: 160px;
+                    right: 75px;
                     top: 5px;
                 }
 
@@ -135,13 +135,14 @@ div#header{
                     li{
                         border: 1px solid #eeeeee;
                         border-bottom: 1px solid #fcfcfc;
+                        border-radius: 3px;
 
                         &:hover{
                             background: #bec0de;
                         }
 
                         a{
-                            margin-left: 20px;
+                            margin-left: 30px;
                             text-decoration: none;
                         }
                     }
