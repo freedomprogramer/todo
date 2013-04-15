@@ -9,9 +9,11 @@ $(function(){
       $.ajax({
         type: 'post',
         url: '/todo_lists',
-        data: {task: {task_name: entervalue, status: 'undo'}},
+        data: {task: {task_name: entervalue, status: 'undo'} },
         success: function(data){
-            $('#undo-things').append("<li class='undo-item' id='"+data.id+"'><input class='unchecked' type='checkbox' title='done thing'><span class='item-name'>"+entervalue+"</span></li>");
+          $('#undo-things').append("<li class='undo-item' id='" + data.id + "'>"
+                                   + "<input class='unchecked' type='checkbox' title='done thing'>"
+                                   + "<span class='item-name'>" + entervalue + "</span></li>");
         }
       });
 

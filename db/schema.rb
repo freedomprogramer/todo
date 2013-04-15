@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130415084632) do
+ActiveRecord::Schema.define(:version => 20130415114149) do
 
   create_table "done_things", :force => true do |t|
     t.string   "done_name"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20130415084632) do
     t.string   "status"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id"
   end
 
   create_table "todo_lists", :force => true do |t|

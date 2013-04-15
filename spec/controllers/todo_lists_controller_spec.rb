@@ -10,12 +10,12 @@ describe TodoListsController do
   end
 
   describe "GET index" do
-    it "assigns @todo_lists and @done_things" do
-      todo_list = TodoList.create!(todo_name: 'learn jquery')
-      done_thing = DoneThing.create!(done_name: 'rspec learning')
+    it "assigns @undo_things and @done_things" do
+      undo_thing = Task.create!(task_name: 'learn jquery', status: 'undo')
+      done_thing = Task.create!(task_name: 'rspec learning', status: 'done')
       get :index
 
-      expect(assigns(:todo_lists)).to match_array([todo_list])
+      expect(assigns(:undo_things)).to match_array([undo_thing])
       expect(assigns(:done_things)).to match_array([done_thing])
     end
 
@@ -26,64 +26,13 @@ describe TodoListsController do
   end
 
   describe "POST create" do
-    context "failure" do
-      before(:each) do
-        @attr = { :todo_name => ""}
-      end
-
-      it "should not create a todo" do
-        expect{
-          post :create, :todo_list => @attr
-        }.not_to change(TodoList, :count)
-      end
-    end
-
-    context "success" do
-      before(:each) do
-        @attr = { :todo_name => 'learn jquery'}
-      end
-
-      it "should create a todo" do
-        expect{
-          post :create, :todo_list => @attr
-        }.to change(TodoList, :count).to(1)
-      end
+    before(:each) do
+      @attr = { task_name: 'learn jquery', status: 'undo' }
 
       it "should return a json" do
-        post :create, :todo_list => @attr, :format => :json
+        post :create, :task => @attr, :format => :json
 
-        expect(response.body).to eq(TodoList.first.to_json)
-      end
-    end
-  end
-
-  describe "DELETE destroy" do
-    before(:each) do
-      TodoList.create(:todo_name => 'learn jquery')
-    end
-
-    context "failure" do
-      it "raise a error with unkown id" do
-        expect{
-          delete :destroy, :id => 2
-        }.to raise_error(ActiveRecord::RecordNotFound)
-      end
-    end
-
-    context "success" do
-      it "destroy a todo and create a done thing" do
-        expect{
-          p TodoList.all
-          delete :destroy, :id => 1
-        }.to change(TodoList, :count).to(0)
-
-        expect( DoneThing.count ).to eq(1)
-      end
-
-      it "should return @done_thing json" do
-        delete :destroy, :id => 1, :format => :json
-
-        expect(response.body).to eq(DoneThing.first.to_json)
+        expect(response.body).to eq(Task.first.to_json)
       end
     end
   end

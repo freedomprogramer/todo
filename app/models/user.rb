@@ -10,5 +10,6 @@ class User < ActiveRecord::Base
 
   validates :username, :presence => true,
                        :uniqueness => true
-  # attr_accessible :title, :body
+
+  has_many :tasks, :dependent => :destroy
 end

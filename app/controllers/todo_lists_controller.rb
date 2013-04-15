@@ -2,12 +2,12 @@ class TodoListsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @undo_things = Task.where('status=?', 'undo')
-    @done_things = Task.where('status=?', 'done')
+    @undo_things = current_user.tasks.where('status=?', 'undo')
+    @done_things = current_user.tasks.order('updated_at DESC').where('status=?', 'done')
   end
 
   def create
-    @task = Task.new(params[:task])
+    @task = current_user.tasks.build(params[:task])
 
     respond_to do |format|
       if @task.save

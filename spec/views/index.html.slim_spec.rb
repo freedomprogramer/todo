@@ -8,11 +8,10 @@ describe "todo_lists/index" do
                               username: 'jackie'))
   end
 
-  context "with 2 todo and without done thing" do
+  context "with 1 todo and without done thing" do
     before(:each) do
-      assign(:todo_lists, [
-        stub_model(TodoList, :todo_name => 'learn jquery'),
-        stub_model(TodoList, :todo_name => 'add rspec test')
+      assign(:undo_things, [
+        stub_model(Task, task_name: 'learn jquery', status: 'undo')
       ])
 
       assign(:done_things, [])
@@ -21,17 +20,16 @@ describe "todo_lists/index" do
     it "display both todo thing" do
       render
       expect(rendered).to match /learn jquery/
-      expect(rendered).to match /add rspec test/
     end
   end
 
   context "with 1 done thing and without todo" do
     before(:each) do
       assign(:done_things, [
-        mock_model(DoneThing, :done_name => 'learn jquery')
+        mock_model(Task, task_name: 'learn jquery', status: 'done')
       ])
 
-      assign(:todo_lists, [])
+      assign(:undo_things, [])
     end
 
     it "display the one done thing" do
@@ -43,11 +41,12 @@ describe "todo_lists/index" do
   context "with 1 done thing and 1 todo" do
     before(:each) do
       assign(:done_things, [
-        mock_model(DoneThing, :done_name => 'add rspec test')
+        mock_model(Task, task_name: 'add rspec test', status: 'done')
       ])
 
-      assign(:todo_lists, [
-        mock_model(TodoList, todo_name: 'learn jquery')               ])
+      assign(:undo_things, [
+        mock_model(Task, task_name: 'learn jquery', :status => 'undo')
+      ])
     end
 
     it "display all done thing and todo" do
