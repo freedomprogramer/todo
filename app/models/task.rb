@@ -5,4 +5,8 @@ class Task < ActiveRecord::Base
   validates :status, :inclusion => { within: %w(undo done) }
 
   belongs_to :user
+
+  def self.today
+    where('created_at >= ?', Time.zone.now.beginning_of_day)
+  end
 end

@@ -3,7 +3,7 @@ class TodoListsController < ApplicationController
 
   def index
     @undo_things = current_user.tasks.where('status=?', 'undo')
-    @done_things = current_user.tasks.order('updated_at DESC').where('status=?', 'done')
+    @done_things = current_user.tasks.today.order('updated_at DESC').where('status=?', 'done')
   end
 
   def create
