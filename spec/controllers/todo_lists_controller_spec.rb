@@ -28,12 +28,24 @@ describe TodoListsController do
   describe "POST create" do
     before(:each) do
       @attr = { task_name: 'learn jquery', status: 'undo' }
+    end
 
-      it "should return a json" do
-        post :create, :task => @attr, :format => :json
+    it "should return a json" do
+      post :create, task: @attr, :format => :json
 
-        expect(response.body).to eq(Task.first.to_json)
-      end
+      expect(response.body).to eq(Task.first.to_json)
+    end
+  end
+
+  describe "PUT update" do
+    before(:each) do
+      @task = @user.tasks.create!(task_name: 'learn jquery', status: 'undo')
+    end
+
+    it "should return @task's json to client" do
+      put :update, id: @task.id, task: {status: 'done'}, :format => :json
+
+      expect(response.body).to eq(Task.first.to_json)
     end
   end
 end
