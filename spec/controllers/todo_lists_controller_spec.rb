@@ -11,8 +11,8 @@ describe TodoListsController do
 
   describe "GET index" do
     it "assigns @undo_things and @done_things" do
-      undo_thing = Task.create!(task_name: 'learn jquery', status: 'undo')
-      done_thing = Task.create!(task_name: 'rspec learning', status: 'done')
+      undo_thing = @user.tasks.create!(task_name: 'learn jquery', status: 'undo')
+      done_thing = @user.tasks.create!(task_name: 'rspec learning', status: 'done')
       get :index
 
       expect(assigns(:undo_things)).to match_array([undo_thing])
