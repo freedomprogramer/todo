@@ -1,4 +1,5 @@
 $(function(){
+  // 创建未办事项
   $('input[type=text]').keypress(function(e){
     var code = e.keyCode;  //判断按键是否为enter
 
@@ -8,9 +9,9 @@ $(function(){
       $.ajax({
         type: 'post',
         url: '/todo_lists',
-        data: {todo_list: {todo_name: entervalue}},
+        data: {task: {task_name: entervalue, status: 'undo'}},
         success: function(data){
-            $('#todo-list').append("<li class='todo-item' id='"+data.id+"'><input class='unchecked' type='checkbox' title='done thing'><span class='item-name'>"+entervalue+"</span></li>");
+            $('#undo-things').append("<li class='undo-item' id='"+data.id+"'><input class='unchecked' type='checkbox' title='done thing'><span class='item-name'>"+entervalue+"</span></li>");
         }
       });
 
@@ -18,13 +19,13 @@ $(function(){
     }
   })
 
-  // 删除todo-item
+  // 改变未办事项为已办
   $(document).on('click', ':checkbox', function(){
     if($(this).hasClass('unchecked')){
       var $done_todo = $(this).parent();
 
       $.ajax({
-        type: 'delete',
+        type: 'put',
         url: '/todo_lists/' + $done_todo.attr('id'),
         success: function(data){
           $done_todo.clone()

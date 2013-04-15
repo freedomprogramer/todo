@@ -1,10 +1,18 @@
 require 'spec_helper'
 
 describe "todo_lists/index" do
+  before(:each) do
+    view.stub(:current_user)
+      .and_return(User.create(email: '894849464@qq.com',
+                              password: 'jackielee',
+                              username: 'jackie'))
+  end
+
   context "with 2 todo and without done thing" do
     before(:each) do
       assign(:todo_lists, [
-        stub_model(TodoList, :todo_name => 'learn jquery'),             stub_model(TodoList, :todo_name => 'add rspec test')
+        stub_model(TodoList, :todo_name => 'learn jquery'),
+        stub_model(TodoList, :todo_name => 'add rspec test')
       ])
 
       assign(:done_things, [])

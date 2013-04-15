@@ -2,29 +2,32 @@ class TodoListsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @todo_lists = TodoList.all
-    @done_things = DoneThing.order('created_at DESC').all
+    @undo_things = Task.where('status=?', 'undo')
+    @done_things = Task.where('status=?', 'done')
+  end
+
+  def create
+    @task = Task.new(params[:task])
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @todo_lists }
+      if @task.save
+        format.json { render json: @task }
+      end
     end
   end
 
-
-  def create
-    @todo_list = TodoList.new(params[:todo_list])
+  def update
+    @task = Task.find(params[:id])
 
     respond_to do |format|
-      if @todo_list.save
-        format.json { render json: @todo_list }
+      if @task.update_attributes(status: 'done')
+        format.json { render json: @task }
       end
     end
   end
 
   def destroy
-    @todo_list = TodoList.find(params[:id])
-    @done_thing = DoneThing.create(done_name: @todo_list.todo_name)
+    @task = Task.find(params[:id])
     respond_to do |format|
       if @todo_list.destroy
         format.json { render json: @done_thing }

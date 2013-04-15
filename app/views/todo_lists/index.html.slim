@@ -10,15 +10,15 @@ div#header
           li
             =link_to '退出登录', destroy_user_session_path, :method => 'delete'
 
-div#todo
-  div#todo-menu
+div#undo
+  div#undo-menu
     h3 待办
     input type='text' name='todo' placeholder='enter your todo' autofocus='autofocus'
-    ul#todo-list
-      -@todo_lists.each do |todo_list|
-        li class='todo-item' id='#{todo_list.id}'
+    ul#undo-things
+      -@undo_things.each do |undo_thing|
+        li class='undo-item' id='#{undo_thing.id}'
           input class='unchecked' type='checkbox' title='done thing'
-          span.item-name= todo_list.todo_name
+          span.item-name= undo_thing.task_name
 
 div#done
   div#done-menu
@@ -26,4 +26,4 @@ div#done
     ul#done-things
       -@done_things.each do |done_thing|
         li class='done-item' id='#{done_thing.id}'
-          span.item-name= done_thing.done_name
+          span.item-name= done_thing.task_name

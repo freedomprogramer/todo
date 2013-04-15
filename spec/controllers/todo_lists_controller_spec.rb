@@ -3,8 +3,8 @@ require 'spec_helper'
 describe TodoListsController do
   before(:each) do
     @user = User.create(email: '894849464@qq.com',
-                     password: 'jackielee',
-                     username: 'lee')
+                        password: 'jackielee/1991',
+                        username: 'lee')
 
     sign_in @user
   end

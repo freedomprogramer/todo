@@ -2,23 +2,23 @@ body{
     background-image: url(pomotodo.jpg);
 }
 
-@mixin todo-done{
+@mixin undo-done{
     min-width: 35%;
     min-height: 31em;
     border-bottom: 1px solid #aaaaaa;
     box-shadow: 2px 2px 10px #777777 inset;
 }
 
-#todo{
+#undo{
     position: relative;
     margin: -10px 0 0 -10px;
     display: inline-block;
     border-right: 1px solid #aaaaaa;
     border-radius: 0px 10px 10px 0;
 
-    @include todo-done;
+    @include undo-done;
 
-    #todo-menu{
+    #undo-menu{
         width: 50%;
         margin: auto;
 
@@ -40,7 +40,7 @@ body{
     border-left: 1px solid #aaaaaa;
     border-radius: 10px 0 0 10px;
 
-    @include todo-done;
+    @include undo-done;
 
     #done-menu{
         width: 50%;
@@ -64,7 +64,7 @@ ul{
 }
 
 
-ul#todo-list{
+ul#undo-list{
     li:hover{
         background-color: #F7EDB8;
     }
