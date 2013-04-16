@@ -3,6 +3,7 @@ source 'http://ruby.taobao.org'
 gem 'rails', '3.2.13'
 gem 'sqlite3'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 gem 'devise'
 
@@ -21,4 +22,5 @@ group :test, :development do
   gem 'guard-rspec'
   gem 'guard-livereload'
   gem 'rb-inotify', '~> 0.8.8'
+  gem 'spork'
 end

@@ -3,6 +3,15 @@ div#header
     h1 Todo List
     div#history-record
       a href='#'  历史记录
+      div#pop-history-bg
+        div#pop-history-content
+          div#bar
+            div#date-section
+              input type='text' id='start-date' title='start data'
+              span -
+              input type='text' id='end-date' title='end data'
+            span.close X
+
     div#user-login
       a href='#'= current_user.username
       div#user-operation

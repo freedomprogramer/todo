@@ -43,20 +43,34 @@ $(function(){
   })
 
   // 单击用户名显示用户操作
-  $('#user-login').hover(function(){
-    $('#user-operation').slideToggle(500);
+  $('#user-login').click(function(){
+    $('#user-operation').slideToggle(1000);
   })
 
   // 给user-operation的li增加动画
   $('#user-operation ul li').mouseover(function(){
-    $(this).children('a').animate({
-      marginLeft: '70px'
-    }, 500)
+      $(this).children('a').animate({
+          marginLeft: '70px'
+      }, 500)
   })
 
   $('#user-operation ul li').mouseleave(function(){
-    $(this).children('a').animate({
-      marginLeft: '50px'
-    })
+      $(this).children('a').animate({
+          marginLeft: '50px'
+      })
   })
+
+
+  // 单击显示
+  $('#history-record a').click(function(){
+    $('#pop-history-bg').fadeIn(600);
+  })
+
+  // 单击隐藏
+  $('span.close').click(function(){
+    $('#pop-history-bg').fadeOut(600);
+  })
+  // 选择历史记录
+  $('#start-date').datepicker()
+  $('#end-date').datepicker()
 })
