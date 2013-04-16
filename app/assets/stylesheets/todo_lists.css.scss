@@ -19,13 +19,14 @@ body{
     @include undo-done;
 
     #undo-menu{
-        width: 50%;
+        width: 80%;
         margin: auto;
 
         input[type=text]{
             width: 80%;
             height: 28px;
-            border: 1px solid #eaeaea;
+            border: 1px solid #b7b7b7;
+            border-radius: 5px;
         }
 
         h3{
@@ -43,7 +44,7 @@ body{
     @include undo-done;
 
     #done-menu{
-        width: 50%;
+        width: 80%;
         margin: auto;
     }
 }
@@ -60,6 +61,7 @@ ul{
         border-top: 1px solid #F7EDB8;
         border-radius: 2px;
         line-height: 35px;
+        width: 350px;
     }
 }
 
@@ -70,13 +72,12 @@ ul#undo-list{
     }
 
     input[type=checkbox]{
-        margin-left: 10px;
         margin-right: 8px;
     }
 }
 
 span.item-name{
-    font-size: 15px;
+    font-size: 14px;
     color: #666666;
 }
 
@@ -87,7 +88,7 @@ span.item-name{
 @mixin header-right{
     float: right;
     margin: 15px 5px;
-
+    cursor: pointer;
 }
 
 div#header{
@@ -116,7 +117,7 @@ div#header{
 
             #user-operation{
                 position: absolute;
-                width: 150px;
+                width: 200px;
                 right: 140px;
                 top: 30px;
                 display: none;
@@ -136,13 +137,19 @@ div#header{
                         border: 1px solid #eeeeee;
                         border-bottom: 1px solid #fcfcfc;
                         border-radius: 3px;
+                        background: #eeeeee;
+                        line-height: 30px;
+                        width: 200px;
 
                         &:hover{
-                            background: #bec0de;
+                            background: #017f62;
+                            a{
+                                color: white;
+                            }
                         }
 
                         a{
-                            margin-left: 30px;
+                            margin-left: 50px;
                             text-decoration: none;
                         }
                     }

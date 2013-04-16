@@ -43,7 +43,20 @@ $(function(){
   })
 
   // 单击用户名显示用户操作
-  $('#user-login a').click(function(){
+  $('#user-login').hover(function(){
     $('#user-operation').slideToggle(500);
+  })
+
+  // 给user-operation的li增加动画
+  $('#user-operation ul li').mouseover(function(){
+    $(this).children('a').animate({
+      marginLeft: '70px'
+    }, 500)
+  })
+
+  $('#user-operation ul li').mouseleave(function(){
+    $(this).children('a').animate({
+      marginLeft: '50px'
+    })
   })
 })
