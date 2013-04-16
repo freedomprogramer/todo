@@ -2,8 +2,8 @@ class TodoListsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @undo_things = current_user.tasks.where('status=?', 'undo')
-    @done_things = current_user.tasks.today.order('updated_at DESC').where('status=?', 'done')
+    @undo_things = current_user.tasks.undo_things
+    @done_things = current_user.tasks.today.done_things
   end
 
   def create
@@ -34,4 +34,21 @@ class TodoListsController < ApplicationController
       end
     end
   end
+
+  def tracks
+    start_date = params[:start_date].split('/')
+      .unshift(params[:start_date].split('/').last)
+      .join('-') + ' 00:00:00'
+
+    end_date = params[:end_date].split('/')
+      .unshift(params[:end_date].split('/').last)
+      .join('-') + ' 00:00:00'
+
+      @tracked_done_things = current_user.tasks.done_things.tracked_done_things(start_date, end_date)
+
+    respond_to do |format|
+      format.json { render json: @tracked_done_things }
+    end
+  end
+
 end

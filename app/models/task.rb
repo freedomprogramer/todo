@@ -6,7 +6,23 @@ class Task < ActiveRecord::Base
 
   belongs_to :user
 
-  def self.today
-    where('created_at >= ?', Time.zone.now.beginning_of_day)
+
+  class << self
+    def today
+      where('created_at >= ?', Time.zone.now.beginning_of_day)
+    end
+
+    def done_things
+      order('updated_at DESC').where('status=?', 'done')
+    end
+
+    def undo_things
+      where('status=?', 'undo')
+    end
+
+    def tracked_done_things(start_date, end_date)
+      where('updated_at >= ? AND updated_at <= ?', start_date, end_date)
+    end
   end
+
 end

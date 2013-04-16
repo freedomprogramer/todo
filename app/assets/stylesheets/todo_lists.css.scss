@@ -194,7 +194,7 @@ div#header{
             }
 
             span{
-                padding: 0 10px;
+                padding: 0 8px;
             }
 
             span.close{
@@ -208,6 +208,11 @@ div#header{
                     background: #4cd0d5;
                 }
             }
+        }
+
+        #content{
+            width: 80%;
+            margin: auto;
         }
     }
 }

@@ -1,7 +1,9 @@
 Todo::Application.routes.draw do
   devise_for :users
 
-  resources :todo_lists, :only => [:index, :create, :destroy, :update]
+  resources :todo_lists, :only => [:index, :create, :destroy, :update] do
+    get 'tracks', :on => :collection
+  end
 
   root :to => 'todo_lists#index'
   # The priority is based upon order of creation:

@@ -42,6 +42,35 @@ $(function(){
     }
   })
 
+  // 查询历史记录
+  $('#start-date').change(function(){
+    var start_date = $(this).val();
+
+    $('#end-date').change(function(){
+      var end_date = $(this).val();
+      var range_date = {
+          "start_date": start_date,
+          "end_date": end_date
+      }
+
+      $.ajax({
+        type: 'get',
+        url: '/todo_lists/tracks',
+        data: range_date,
+        success: function(data){
+          var length = data.length;
+
+          for(i=0; i<length-1; i++){
+            $('#content ul').append("<li>"+data[i].task_name+"</li>");
+          }
+        }
+      })
+
+    });
+  });
+
+
+
   // 单击用户名显示用户操作
   $('#user-login').click(function(){
     $('#user-operation').slideToggle(1000);
@@ -71,6 +100,7 @@ $(function(){
     $('#pop-history-bg').fadeOut(600);
   })
   // 选择历史记录
-  $('#start-date').datepicker()
-  $('#end-date').datepicker()
+  $('#start-date').datepicker();
+  $('#end-date').datepicker();
+
 })
