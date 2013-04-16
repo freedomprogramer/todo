@@ -21,7 +21,7 @@ class Task < ActiveRecord::Base
     end
 
     def tracked_done_things(start_date, end_date)
-      where('updated_at >= ? AND updated_at <= ?', start_date, end_date)
+      where(:updated_at => (start_date.to_date .. end_date.to_date))
     end
   end
 

@@ -36,15 +36,8 @@ class TodoListsController < ApplicationController
   end
 
   def tracks
-    start_date = params[:start_date].split('/')
-      .unshift(params[:start_date].split('/').last)
-      .join('-') + ' 00:00:00'
-
-    end_date = params[:end_date].split('/')
-      .unshift(params[:end_date].split('/').last)
-      .join('-') + ' 00:00:00'
-
-      @tracked_done_things = current_user.tasks.done_things.tracked_done_things(start_date, end_date)
+    @tracked_done_things = current_user.tasks.done_things
+      .tracked_done_things(params[:start_date], params[:end_date])
 
     respond_to do |format|
       format.json { render json: @tracked_done_things }

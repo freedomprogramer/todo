@@ -42,6 +42,10 @@ $(function(){
     }
   })
 
+  // 选择历史记录
+  $('#start-date').datepicker({ dateFormat: 'yy-mm-dd' });
+  $('#end-date').datepicker({ dateFormat: 'yy-mm-dd' });
+
   // 查询历史记录
   $('#start-date').change(function(){
     var start_date = $(this).val();
@@ -59,6 +63,7 @@ $(function(){
         data: range_date,
         success: function(data){
           var length = data.length;
+          $('#content ul').children().remove();
 
           for(i=0; i<length-1; i++){
             $('#content ul').append("<li>"+data[i].task_name+"</li>");
@@ -68,8 +73,6 @@ $(function(){
 
     });
   });
-
-
 
   // 单击用户名显示用户操作
   $('#user-login').click(function(){
@@ -99,8 +102,4 @@ $(function(){
   $('span.close').click(function(){
     $('#pop-history-bg').fadeOut(600);
   })
-  // 选择历史记录
-  $('#start-date').datepicker();
-  $('#end-date').datepicker();
-
 })
