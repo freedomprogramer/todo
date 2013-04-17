@@ -168,11 +168,12 @@ div#header{
     #pop-history-bg{
         position: absolute;
         width: 80%;
-        top: 120%;
+        top: 60px;
+        min-height: 400px;
+        padding-bottom: 20px;
         left: 10%;
         z-index: 1;
         background: white;
-        min-height: 400px;
         border: 1px solid #cccccc;
         border-radius: 2px;
         box-shadow: 0 0 50px #111111;
@@ -213,6 +214,25 @@ div#header{
         #content{
             width: 80%;
             margin: auto;
+
+            ul{
+                padding: 0 0 20px 0;
+                li{
+                    padding-left: 30px;
+                    width: 90%;
+                    border: none;
+                    border-bottom: 1px solid #cccccc;
+                    border-radius: 0;
+
+                    span{
+                        padding-right: 10px;
+                    }
+
+                    &:hover{
+                        background: #f7f7f7;
+                    }
+                }
+            }
         }
     }
 }

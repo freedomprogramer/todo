@@ -62,11 +62,17 @@ $(function(){
         url: '/todo_lists/tracks',
         data: range_date,
         success: function(data){
-          var length = data.length;
-          $('#content ul').children().remove();
+          $('#content').children().remove();
 
-          for(i=0; i<length-1; i++){
-            $('#content ul').append("<li>"+data[i].task_name+"</li>");
+          for(i in data){
+            var length = data[i].length;
+            $('#content').append('<h2>'+ i.substring(0, 10) +'</h2><ul></ul>');
+
+            for(j=0; j < length; j++){
+              $('#content ul').append("<li>"
+                                      +"<span>"+data[i][j].updated_at.substring(11, 19)+"</span>"
+                                      +data[i][j].task_name+"</li>");
+            }
           }
         }
       })

@@ -22,6 +22,7 @@ class Task < ActiveRecord::Base
 
     def tracked_done_things(start_date, end_date)
       where(:updated_at => (start_date.to_date .. end_date.to_date))
+        .group_by{ |u| u.updated_at.beginning_of_day }
     end
   end
 

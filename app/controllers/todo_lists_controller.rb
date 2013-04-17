@@ -39,6 +39,7 @@ class TodoListsController < ApplicationController
     @tracked_done_things = current_user.tasks.done_things
       .tracked_done_things(params[:start_date], params[:end_date])
 
+    p @tracked_done_things
     respond_to do |format|
       format.json { render json: @tracked_done_things }
     end
