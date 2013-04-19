@@ -45,7 +45,7 @@ $(function(){
   })
 
   // 删除待办todo
-  $('#undo-things').on('click', '.item-delete', function(){
+  $(document).on('click', '.item-delete', function(){
     var $this = $(this),
         task_id = $this.parent().attr('id'),
         choose_what = confirm('Are you sure?');
@@ -88,9 +88,10 @@ $(function(){
             $('#content').append('<h2>'+ i.substring(0, 10) +'</h2><ul></ul>');
 
             for(j=0; j < length; j++){
-              $('#content ul').append("<li>"
+              $('#content ul').append("<li id='"+ data[i][j].id +"'>"
                                       +"<span>"+data[i][j].updated_at.substring(11, 19)+"</span>"
-                                      +data[i][j].task_name+"</li>");
+                                      +data[i][j].task_name
+                                      +"<span class='item-delete'>X</span></li>");
             }
           }
         }
@@ -105,31 +106,27 @@ $(function(){
   })
 
   // 单击用户名显示用户操作
-  $('#user-login').click(function(){
-    $('#user-operation').slideToggle(1000);
+  $('#user-login').hover(function(){
+      $('#user-operation').toggle(500);
   })
 
-  // 给user-operation的li增加动画
-  $('#user-operation ul li').mouseover(function(){
-      $(this).children('a').animate({
-          marginLeft: '70px'
-      }, 500)
-  })
-
-  $('#user-operation ul li').mouseleave(function(){
-      $(this).children('a').animate({
-          marginLeft: '50px'
-      })
-  })
-
-
-  // 单击显示
+  // 单击显示历史记录
   $('#history-record a').click(function(){
     $('#pop-history-bg').fadeIn(600);
   })
 
-  // 单击隐藏
+  // 单击隐藏历史记录
   $('span.close').click(function(){
     $('#pop-history-bg').fadeOut(600);
   })
+
+  // hover显示删除历史记录图标
+  $('#content').on('mouseover', 'li', function(){
+    $(this).find('.item-delete').show();
+  })
+
+  $('#content').on('mouseleave', 'li', function(){
+    $(this).find('.item-delete').hide();
+  })
+
 })
