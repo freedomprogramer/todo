@@ -27,7 +27,7 @@ describe TodoListsController do
 
   describe "POST create" do
     before(:each) do
-      @attr = { task_name: 'learn jquery', status: 'undo' }
+      @attr = { task_name: 'learn css', status: 'undo' }
     end
 
     it "should return a json" do
@@ -46,6 +46,32 @@ describe TodoListsController do
       put :update, id: @task.id, task: {status: 'done'}, :format => :json
 
       expect(response.body).to eq(Task.first.to_json)
+    end
+  end
+
+  describe "DELETE destroy" do
+    before(:each) do
+      @task = @user.tasks.create!(task_name: 'learn jquery', status: 'undo')
+    end
+
+    it "should return {status: success} json" do
+      delete :destroy, id: @task.id, :format => :json
+
+      expect(response.body).to eq({status: 'success'}.to_json)
+    end
+  end
+
+  describe "GET tracks" do
+    before(:each) do
+      @task = @user.tasks.create!(task_name: 'learn jquery', status: 'done')
+      @start = Time.now.to_s.slice(0, 10)
+      @end = Time.new.tomorrow.to_s.slice(0, 10)
+    end
+
+    it "should return @task json" do
+      get :tracks, start_date: @start, end_date: @end, :format => :json
+
+      expect(response.body).to eq({Task.first.updated_at.beginning_of_day => [Task.first]}.to_json)
     end
   end
 end

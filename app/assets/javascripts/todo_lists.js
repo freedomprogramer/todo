@@ -13,7 +13,8 @@ $(function(){
         success: function(data){
           $('#undo-things').append("<li class='undo-item' id='" + data.id + "'>"
                                    + "<input class='unchecked' type='checkbox' title='done thing'>"
-                                   + "<span class='item-name'>" + entervalue + "</span></li>");
+                                   + "<span class='item-name'>" + entervalue + "</span>"
+                                   + "<span class='item-delete'>X</span></li>");
         }
       });
 
@@ -34,9 +35,27 @@ $(function(){
               .attr('class', 'done-item')
               .attr('id', data.id)
               .find('input').remove().end()
+              .find('.item-delete').remove().end()
               .prependTo('#done-things').css('display', 'none');
           $('.done-item:first').fadeIn(1000).slideDown(500);
           $done_todo.fadeOut(500).remove();
+        }
+      })
+    }
+  })
+
+  // 删除待办todo
+  $('#undo-things').on('click', '.item-delete', function(){
+    var $this = $(this),
+        task_id = $this.parent().attr('id'),
+        choose_what = confirm('Are you sure?');
+
+    if(choose_what){
+      $.ajax({
+        type: 'delete',
+        url: '/todo_lists/' + task_id,
+        success: function(){
+          $this.parent().fadeOut(500).end().remove();
         }
       })
     }
@@ -78,7 +97,12 @@ $(function(){
       })
 
     });
-  });
+  })
+
+  // 在历史记录中单击标题来显隐子项
+  $('#content').on('click', 'h2', function(){
+    $(this).next().slideToggle();
+  })
 
   // 单击用户名显示用户操作
   $('#user-login').click(function(){

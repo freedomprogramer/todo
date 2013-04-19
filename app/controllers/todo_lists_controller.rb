@@ -28,9 +28,10 @@ class TodoListsController < ApplicationController
 
   def destroy
     @task = Task.find(params[:id])
+
     respond_to do |format|
-      if @todo_list.destroy
-        format.json { render json: @done_thing }
+      if @task.destroy
+        format.json { render json: {status: 'success'} }
       end
     end
   end
@@ -39,7 +40,6 @@ class TodoListsController < ApplicationController
     @tracked_done_things = current_user.tasks.done_things
       .tracked_done_things(params[:start_date], params[:end_date])
 
-    p @tracked_done_things
     respond_to do |format|
       format.json { render json: @tracked_done_things }
     end
